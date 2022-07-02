@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Analog Clock</title>
+    <link rel="icon" href="time-five-regular-36.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main-cont">
+        <div id="clock-cont">
+            <div class="hand sec-hand"></div>
+            <div class="hand min-hand"></div>           
+            <div class="hand hour-hand"></div>
+            <div class="knot"></div>
+            <div class="number-label twelve">12</div>
+            <div class="number-label three">3</div>
+            <div class="number-label six">6</div>
+            <div class="number-label nine">9</div>
+            <div class="number-label one">1</div>
+            <div class="number-label two">2</div>
+            <div class="number-label four">4</div>
+            <div class="number-label five">5</div>
+            <div class="number-label seven">7</div>
+            <div class="number-label eight">8</div>
+            <div class="number-label ten">10</div>
+            <div class="number-label eleven">11</div>
+        </div>
+    </div>
+    <script>
+        const secHand = document.querySelector(".sec-hand");
+        const minHand = document.querySelector(".min-hand");
+        const hourHand = document.querySelector(".hour-hand");
+        
+        function startClock(){
+            const timeNow = new Date();
+            const seconds = timeNow.getSeconds()
+            const secondsDegrees =  ((seconds/60) * 360) + 90
+            const mins = timeNow.getMinutes()
+            const minsDegrees = ((mins/60) * 360) + 90
+            let hours = timeNow.getHours();
+            if (hours > 12) { 
+                hours -= 12
+            } else if (hours === 0) {
+                hours = 12};
+            const hoursDegrees = ((hours/12) * 360) + 90
+            secHand.style.transform = `rotate(${secondsDegrees}deg)`;
+            minHand.style.transform = `rotate(${minsDegrees}deg)`;
+            hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+        }                  
+        setInterval(startClock, 1000)
+    </script>
+</body>
+</html>
